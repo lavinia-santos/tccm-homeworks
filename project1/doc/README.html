@@ -1,0 +1,27 @@
+<h1 class="unnumbered" id="introduction">Introduction</h1>
+<p>This program reads molecular data from a ‘.h5‘ file and computes the Hartree-Fock (HF) energy and Møller–Plesset second-order perturbation (MP2) energy.</p>
+<h1 class="unnumbered" id="theory">Theory</h1>
+<p>The HF energy is given by: <span class="math display">\[E_{\text{HF}} = E_{NN} + 2\sum_{i=1}^{N_{\text{occ}}}\langle i|\hat{h}|i\rangle + \sum_{i=1}^{N_{\text{occ}}}\sum_{j=1}^{N_{\text{occ}}} \left(2\langle ij|ij\rangle - \langle ij|ji\rangle\right)\]</span></p>
+<p>The MP2 energy is then calculated as: <span class="math display">\[E_{\text{MP2}} = E_{\text{HF}} + 
+\sum_{(i,j)\in\text{occupied}}\sum_{(a,b)\in\text{virtual}}\langle ij|ab\rangle\frac{2\langle ij|ab\rangle-\langle ij|ba\rangle}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}\]</span></p>
+<h1 class="unnumbered" id="dependencies">Dependencies</h1>
+<p>The program depends on:</p>
+<ul>
+<li><p><strong>HDF5 library</strong>: Install using <code>sudo apt-get install libhdf5-dev</code>.</p></li>
+<li><p><strong>TREXIO library</strong>: Install following the instructions on <a href="https://github.com/TREX-CoE/trexio">TREXIO GitHub</a>.</p></li>
+</ul>
+<h1 class="unnumbered" id="installation-and-usage">Installation and Usage</h1>
+<p>Clone the repository, navigate to the project directory, and compile using the following commands:</p>
+<pre><code>$ git clone git@github.com:yourusername/yourrepo.git
+$ cd yourrepo
+$ ./compile.sh</code></pre>
+<p>Run the program as follows:</p>
+<pre><code>./main.o [path/to/input.h5] [molecule_name]</code></pre>
+<h1 class="unnumbered" id="example">Example</h1>
+<pre><code>$ ./main.o ./data/h2o.h5 H2O</code></pre>
+<p>Expected output:</p>
+<pre><code>HF energy: -76.026799
+MP2 energy: -76.230759</code></pre>
+<h1 class="unnumbered" id="testing">Testing</h1>
+<p>Use the provided <code>test.sh</code> script to validate the program:</p>
+<pre><code>$ ./test.sh</code></pre>
