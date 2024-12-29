@@ -1,9 +1,9 @@
 Introduction {#introduction .unnumbered}
 ============
 
-This program reads molecular data from a '.h5' file and computes the
-Hartree-Fock (HF) energy and Møller--Plesset second-order perturbation
-(MP2) energy.
+TO BE COMPLETEDThis program reads molecular data from a '.h5' file and
+computes the Hartree-Fock (HF) energy and Møller--Plesset second-order
+perturbation (MP2) energy.
 
 Theory {#theory .unnumbered}
 ======
