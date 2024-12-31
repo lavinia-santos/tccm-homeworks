@@ -11,6 +11,7 @@ fi
 file_path=$1
 molecule=$2
 
+mkdir -p lib
 gcc -I/usr/local/include src/main.c -L/usr/local/lib -ltrexio -o ./lib/main
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 ./lib/main ${file_path} ${molecule}
