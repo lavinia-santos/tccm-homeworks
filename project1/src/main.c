@@ -87,6 +87,16 @@ double *compute_one_electron_integrals(trexio_t *trexio_file, char *molecule, bo
  */
 void compute_two_electrons_integrals(trexio_t *trexio_file, char *molecule, int64_t *buffer_size, int32_t **index, double **value);
 
+/**
+ * @brief Computes the flattened index for accessing two-electron integrals
+ *
+ * @param i [IN] index of the first molecular orbital
+ * @param j [IN] index of the second molecular orbital
+ * @param k [IN] index of the third molecular orbital
+ * @param l [IN] index of the fourth molecular orbital
+ * @param mo_num [IN] total number of molecular orbitals
+ * @return int64_t: the flattened index for the given orbital combination
+ */
 int64_t get_index(int i, int j, int k, int l, int mo_num);
 
 /**
@@ -127,7 +137,7 @@ double compute_mp2_correction(int64_t n_integrals, int32_t *index, double *value
 
 
 /**
- * \brief Displays a short license notice for interactive programs.
+ * @brief Displays a short license notice.
  */
 void display_interactive_license_notice();
 
