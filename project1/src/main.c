@@ -40,6 +40,7 @@
  *
  * @param trexio_file [IN] the file where the data is stored
  * @param molecule [IN] the molecule considered
+ * @param more_info [IN] flag to include additional results
  * @return double: the repulsion energy
  */
 double compute_repulsion_energy(trexio_t *trexio_file, char *molecule, bool more_info);
@@ -49,6 +50,7 @@ double compute_repulsion_energy(trexio_t *trexio_file, char *molecule, bool more
  *
  * @param trexio_file [IN] the file where the data is stored
  * @param molecule [IN] the molecule considered
+ * @param verbose [IN] flag to enable detailed logging
  * @return int32_t: the number of occupied orbitals
  */
 int32_t compute_occupied_orbitals(trexio_t *trexio_file, char *molecule, bool verbose);
@@ -58,6 +60,7 @@ int32_t compute_occupied_orbitals(trexio_t *trexio_file, char *molecule, bool ve
  *
  * @param trexio_file [IN] the file where the data is stored
  * @param molecule [IN] the molecule considered
+ * @param verbose [IN] flag to enable detailed logging
  * @return int32_t: the number of molecular orbitals
  */
 int32_t compute_number_of_molecular_orbitals(trexio_t *trexio_file, char *molecule, bool verbose);
@@ -68,6 +71,7 @@ int32_t compute_number_of_molecular_orbitals(trexio_t *trexio_file, char *molecu
  * LLR:
  * @param trexio_file [IN] the file where the data is stored
  * @param molecule [IN] the molecule considered
+ * @param verbose [IN] flag to enable detailed logging
  * @return double*: the one electron integrals
  */
 double *compute_one_electron_integrals(trexio_t *trexio_file, char *molecule, bool verbose);
@@ -93,10 +97,19 @@ int64_t get_index(int i, int j, int k, int l, int mo_num);
  * @param repulsion_energy [IN] nuclear repulsion energy of the molecule
  * @param one_e_integral [IN] one-electron integrals of the molecule
  * @param mo_num [IN] total number of molecular orbitals
- * @return Hartree-Fock energy
+ * @param more_info [IN] flag to include additional results
+ * @param verbose [IN] flag to enable detailed logging
+ * @return double: Hartree-Fock energy
  */
 double compute_HF_energy(trexio_t *trexio_file, char *molecule, double repulsion_energy, double *one_e_integral, int mo_num, bool more_info, bool verbose);
 
+/**
+ * @brief Reads the molecular orbital energies from the given TREXIO file
+ *
+ * @param file [IN] the TREXIO file from which the data is read
+ * @param mo_energy [OUT] array to store the molecular orbital energies
+ * @return trexio_exit_code: status code indicating success or failure of the operation
+ */
 trexio_exit_code trexio_read_mo_energy(trexio_t *const file, double *const mo_energy);
 
 /**
@@ -108,7 +121,7 @@ trexio_exit_code trexio_read_mo_energy(trexio_t *const file, double *const mo_en
  * @param mo_num [IN] total number of molecular orbitals
  * @param mo_occ [IN] number of occupied molecular orbitals
  * @param orbital_energies [IN] orbital energy values
- * @return MP2 energy correction
+ * @return double: MP2 energy correction
  */
 double compute_mp2_correction(int64_t n_integrals, int32_t *index, double *value, int mo_num, int mo_occ, double *orbital_energies);
 
@@ -198,13 +211,13 @@ void main(int argc, char *argv[])
         free(mo_energy);
         exit(1);
     }
-    /*else
+    else if (verbose)
     {
         for (int i = 0; i < mo_num; ++i)
         {
-            // printf("Molecular orbital energy %d: %.5f\n", i, mo_energy[i]);
+            printf("Molecular orbital energy %d: %.5f\n", i, mo_energy[i]);
         }
-    }*/
+    }
     // Compute MP2 correction
     double mp2_correction = compute_mp2_correction(buffer_size, index, value, mo_num, n_up, mo_energy);
     printf("MP2 correction: %.8f\n", mp2_correction);
