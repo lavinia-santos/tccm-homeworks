@@ -10,6 +10,7 @@ The program depends on the following libraries:
 On Ubuntu, you can install the `HDF5` library with:
 ```bash
 sudo apt-get install libhdf5-dev
+```
 
 ### Installing TREXIO
 ```bash
@@ -19,23 +20,18 @@ cd trexio-2.5.0
 ./configure
 make
 sudo make install
+```
 
 
-### Compilation
+### Compilation and running the program
 Clone the repository and compile the program using the provided script:
+```bash
 git clone https://github.com/lavinia-santos/tccm-homeworks.git
 cd project1/
 ./compile_and_run.sh <file_path> <molecule>
+```
 
 Replace `<file_path>` with the path to the `.h5` input file and `<molecule>` with the molecule name. The executable will be generated in the `lib` directory.
-
-### Running the Program
-After compilation, you can execute the program with:
-```bash
-./compile_and_run.sh <file_path> <molecule>
-
-Replace `<file_path>` and `<molecule>` with the appropriate inputs.
-
 
 
 
