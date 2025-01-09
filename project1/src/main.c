@@ -1,3 +1,31 @@
+/**
+ * \file main.c
+ * \brief This program reads the '.h5' input file and computes the HF energy along with MP2 correction.
+ * 
+ * \author Dijana Mitrovic, Lavínia Gabriela Teodoro dos Santos
+ * \version 1.0
+ * \date 2025-09-01
+ * \copyright GNU Public License V3.0
+ * This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+    The authors can be contacted through email:
+    - Dijana Mitrovic: dijana.mitrovic@univ-tlse3.fr
+    - Lavínia Gabriela Teodoro dos Santos: lavinia-gabriela.teodoro-dos-santos@univ-tlse3.fr
+ */
+
+
 #include <trexio.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -5,6 +33,8 @@
 #include <math.h>
 
 /* PRIVATE FUNCTIONS DECLARATIONS */
+
+
 /**
  * @brief Computes the repulsion energy of the molecule associated to the given file
  *
@@ -82,9 +112,16 @@ trexio_exit_code trexio_read_mo_energy(trexio_t *const file, double *const mo_en
  */
 double compute_mp2_correction(int64_t n_integrals, int32_t *index, double *value, int mo_num, int mo_occ, double *orbital_energies);
 
+
+/**
+ * \brief Displays a short license notice for interactive programs.
+ */
+void display_interactive_license_notice();
+
 /* PUBLIC FUNCTIONS DEFINITIONS */
 void main(int argc, char *argv[])
 {
+    display_interactive_license_notice();
     /* Read arguments */
     char *filePath = argv[1];
     char *molecule = argv[2];
@@ -520,3 +557,13 @@ double compute_mp2_correction(int64_t buffer_size, int32_t *index, double *value
     free(two_e_value);
     return mp2_correction;
 }
+
+
+
+void display_interactive_license_notice() {
+    printf("\n\nComputation of the MP2 energy version 1.0, Copyright (C) 2025\n");
+    printf("This program comes with ABSOLUTELY NO WARRANTY.\n");
+    printf("This is a free software, and you are welcome to redistribute it\n");
+    printf("under certain conditions. For details, see the LICENSE file.\n\n\n");
+}
+
