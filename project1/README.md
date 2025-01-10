@@ -39,3 +39,12 @@ The H2O molecule can be run as follows:
 ```bash
 ./compile_and_run.sh ./data/h2o.h5 H2O
 ```
+
+### Testing
+
+You can test the program with the `test.sh` script
+```bash
+./test.sh
+```
+This script will compile and run the program with the `.h5` provided input files.
+
