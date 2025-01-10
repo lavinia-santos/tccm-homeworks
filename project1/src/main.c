@@ -133,7 +133,7 @@ trexio_exit_code trexio_read_mo_energy(trexio_t *const file, double *const mo_en
  * @param orbital_energies [IN] orbital energy values
  * @return double: MP2 energy correction
  */
-double compute_mp2_correction(int64_t n_integrals, int32_t *index, double *value, int mo_num, int mo_occ, double *orbital_energies);
+double compute_mp2_correction(int64_t buffer_size, int32_t *index, double *value, int mo_num, int mo_occ, double *orbital_energies);
 
 
 /**
